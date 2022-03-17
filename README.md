@@ -9,6 +9,8 @@ Sub-Filtering is based upon category:
   - Allow
   - Default
 
+Requires the user to install requests - pip3 install requests
+
 ## Operation
 ```
   usage: o365query.py [-h] [-a] [-o] [-d] [-6] service_area
@@ -27,7 +29,7 @@ Sub-Filtering is based upon category:
 ## Example output
 
 ```
-jerry@sunlight:~/Dev/O365$ python3 o365query.py -o Skype
+jerry@torch:~/Dev/O365$ python3 o365query.py -o Skype
 Starting Collection...
 File received
 Generating content...
@@ -44,5 +46,5 @@ IPv4 Prefix:    52.112.0.0/14
 IPv4 Prefix:    52.120.0.0/14
 ---------------------------------------------------------------------------
 Completed.
-jerry@sunlight:~/Dev/O365$
+jerry@torch:~/Dev/O365$
 ```
