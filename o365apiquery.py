@@ -35,8 +35,8 @@ def getMSReport(serviceArea):
         print('ERROR: Incorrect Service Area Entered - please reference the help with --help')
         exit()
 
-# Create Proxy code to standard output 
-def print_proxy(o365info, wants_optimize, wants_allow, wants_default, wants_ipv6):
+# Create standard output 
+def print_table(o365info, wants_optimize, wants_allow, wants_default, wants_ipv6):
     # Regex compile for IPv4 matching
     good_ip = re.compile("^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$")
     # Create a list that holds will hold the worldwide.json content
@@ -51,7 +51,7 @@ def print_proxy(o365info, wants_optimize, wants_allow, wants_default, wants_ipv6
             # Identify that a list of Proxy lines are being generated - to ensure that a close bracket is printed
             all_urls = []
             all_ips = []
-            # Generate header for the Proxy file
+            # Generate header for the worldwide.json ID
             print ("")
             print ("---------------------------------------------------------------------------")
             print ("Created from worldwide.json with ID: {0}".format(str(record["id"])))
@@ -83,11 +83,10 @@ def print_proxy(o365info, wants_optimize, wants_allow, wants_default, wants_ipv6
                         all_urls.append("IPv4 Prefix:\t{0}/{1}".format(ipaddr[0], ipaddr[1]))
                     elif wants_ipv6 == True:
                         all_urls.append("IPv6 Prefix:\t{0}/{1}".format(ipaddr[0], ipaddr[1]))
-            # Build automatic lines to allow the close of the If( statement in Proxy
-            total_proxy_list = all_ips + all_urls
+            total_list = all_ips + all_urls
             counter = 0
-            list_length = len(total_proxy_list)
-            for item in total_proxy_list:
+            list_length = len(total_list)
+            for item in total_list:
                 counter+= 1
                 if counter == list_length:
                     print ("{0}".format(item))
@@ -112,7 +111,7 @@ def main():
     # Create an empty list that will contain the output from the Microsft worldwide.json response
     # The microsoft JSON response contains a list with each object referencing an ID
     print ("Generating content...")
-    print_proxy(o365info, args.optimize, args.allow, args.default, args.ipv6)
+    print_table(o365info, args.optimize, args.allow, args.default, args.ipv6)
     print ("---------------------------------------------------------------------------")
     print ("Completed.")
 
